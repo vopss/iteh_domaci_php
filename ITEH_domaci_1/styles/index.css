@@ -1,0 +1,550 @@
+*{
+    margin:0;
+    box-sizing: border-box;
+}
+
+body{
+    width: 100vw;
+    min-height: 100vh;
+    overflow-x: hidden;
+} 
+
+body > div{
+    display: flex;
+}
+
+main{
+    flex:1;
+}
+
+.filter-div{
+    height: 12vh;
+    min-height: 90px;
+}
+
+header.filter-div{
+    padding: 5px!important;
+}
+
+.price-div, .year-div{
+    display: flex;
+    justify-content: space-between;
+}
+
+.price-div input, .year-div input{
+    width: 100px;
+}
+
+.price-div > div, .year-div > div{
+    margin: 0 10px;
+}
+.filter-div .first-row{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 100%;
+}
+
+.sort-div{
+    align-items: center;
+}
+
+.sort-div select{
+    height: 30px;
+    font-size: 12px;
+}
+
+.ads-container{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.ad-div{
+    margin:auto;
+    border-radius: 25px;
+    box-shadow: 4px 5px 13px -3px rgba(0,0,0,0.64);
+    height: auto;
+    background-color: #1f04b8;
+    width: 90%;
+    min-width: 400px;
+    display: flex;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+.ad-div > div.img-div{
+    /* background-color: red; */
+    border-radius: 25px;
+
+}
+
+.ad-div > div.img-div img{
+    border-radius: 25px;
+    object-fit: cover;
+    width: 100%!important;
+}
+
+.ad-div > div.img-div {
+    flex: 3;
+    max-width: 30%;
+
+}
+
+.ad-div > .vr-div{
+    background-color: rgb(114, 172, 226);
+    width: 1.5px;
+    margin:0 10px;
+    height: 100%;
+}
+
+.ad-div > .ad-info-div{
+    flex:7;
+    background-color: rgb(1, 33, 122);
+    border-radius: 25px;
+    color:black;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    box-shadow: 0px 0px 5px 2px #000000;
+}
+
+.ad-info-div .ad-title{
+    padding: 5px;
+    padding-left: 20px;
+    font-size: 1.6em;
+    border-bottom: 1px solid white;
+    color: white;
+    display: flex;
+}
+
+.ad-info-div .ad-title > div{
+    flex:1;
+}
+
+.ad-info-div .ad-title > button{
+    margin:0 5px;
+}
+
+.ad-info-div .ad-title > button > svg{
+    width: 100%;
+    height: 100%;
+}
+
+.ad-basic-info-div{
+    display: flex;
+}
+
+.ad-basic-info-div > *{
+    color:white;
+    flex:1;
+    margin:0 5px;
+    font-size: 1.4em;
+    background-color: black;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.ad-basic-info-div > button:hover{
+    color:red;
+    font-weight: 500;
+}
+
+.ad-detailed-info-div{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-gap: 2px;
+    flex:1;
+    padding: 10px 0;
+    color: white;
+}
+
+.ad-detailed-info-div > *:not([type="button"]) {
+    border-radius: 5px;
+    background: #3211ee;
+    background-origin: content-box;
+    display: flex;
+    align-items: center;
+    padding-left: 5px;
+}
+
+.ad-detailed-info-div > .additional-info-div{
+    align-items: flex-start;
+}
+
+.ad-detailed-info-div  *{
+    word-wrap: break-word;
+}
+
+.owner-info{
+    display: grid;
+    grid-template: 1fr 1fr/ 1fr 1fr;
+    grid-row: span 2;
+}
+
+.additional-info-div{
+    grid-column: 2;
+    grid-row-start: 1;
+    grid-row-end: 4;
+}
+
+.ad-detailed-info-div .price-div{
+    grid-column: 2;
+    grid-row:5;
+    font-size: 1.4rem;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.ad-detailed-info-div .price-div > div{
+    flex:1;
+}
+
+.ad-detailed-info-div .price-div svg{
+    width: 25px;
+    height: 25px;
+}
+
+.ad-detailed-info-div .date-div{
+    display: flex;
+    align-items: center;
+    grid-row: 5;
+    font-size: 1.3em;
+    grid-column: 1;
+}
+
+.ad-detailed-info-div .date-div > div{
+    flex: 1;
+}
+
+#background-overlay{
+    display: none;
+}
+
+#background-overlay.active{
+    position: fixed;
+    display: block;
+    top:0;
+    width: 100vw;
+    height: 100vh;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.644); 
+}
+
+#deleteAdModal{
+    display: none;
+    z-index: 1;
+}
+
+#deleteAdModal.active{
+    width: 40vw;
+    min-width: 300px;
+    height: 300px;
+    background-color: white;
+    border-radius: 20px;
+    position: fixed;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 20px;
+}
+
+#deleteProfileModal{
+    display: none;
+    z-index: 1;
+}
+
+#deleteProfileModal.active{
+    width: 40vw;
+    min-width: 300px;
+    height: 300px;
+    background-color: white;
+    border-radius: 20px;
+    position: fixed;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 20px;
+}
+
+#deleteProfileModal .question{
+    text-align: center;
+}
+#deleteProfileModal .buttons{
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.your-ad .owner-div{
+    color: white;
+    font-size: 1.4em;
+    border: 2px solid greenyellow;
+}
+#deleteAdModal .question{
+    text-align: center;
+}
+#deleteAdModal .buttons{
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+#editUserDataModal{
+    display: none;
+    z-index: 1;
+}
+
+#editUserDataModal.active{
+    width: 60vw;
+    min-width: 400px;
+    height: 500px;
+    background-color: white;
+    border-radius: 20px;
+    position: fixed;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    display: block;
+    padding: 20px;
+}
+
+#addNewAdModal{
+    display: none;
+    z-index: 1;
+}
+
+.close-modal-btn{
+    position: absolute;
+    top:0;
+    right:0;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 0;
+    border-bottom-left-radius: 10%;
+}
+
+#addNewAdModal .close-modal-btn > svg{
+    width: 16px;
+    height: 16px;
+}
+
+#addNewAdModal.active{
+    width: 60vw;
+    min-width: 400px;
+    height: 400px;
+    background-color: white;
+    border-radius: 20px;
+    position: fixed;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    display: block;
+    padding: 20px;
+}
+
+.addNewAdModalTitle{
+    text-align: center;
+}
+
+
+
+#addNewAdModal.active > form{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(6, 1fr);
+    width: 100%;
+    height: 100%;
+    justify-items: center;
+
+}
+
+#editAdModal{
+    display: none;
+    z-index: 1;
+}
+
+#editAdModal .close-modal-btn > svg{
+    width: 16px;
+    height: 16px;
+}
+
+#editAdModal.active{
+    width: 60vw;
+    min-width: 400px;
+    height: 400px;
+    background-color: white;
+    border-radius: 20px;
+    position: fixed;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    display: block;
+    padding: 20px;
+}
+
+#editAdModal.active > form{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(6, 1fr);
+    width: 100%;
+    height: 100%;
+    justify-items: center;
+
+}
+
+#editAdModal.active > form > textarea[name="additional"]{
+    grid-row: span 2;
+    width: 100%;
+}
+
+#editAdModal.active > form > button[type='submit']{
+    grid-column: span 2;
+    margin: 15px;
+    height: 40px;
+    width: 200px;
+}
+
+#editAdModal.active > form > input{
+    width: 70%;
+    margin: auto;
+    min-width: 200px;
+}
+
+.files-div{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.files-div label{
+    background-color: rgb(153, 151, 182);
+    width: 70%;
+    color: white;
+    border: 1px solid black;
+    font-size: 1.2em;
+}
+
+.files-div label:hover{
+    color:blue;
+}
+
+.files-div input{
+    display: none;
+}
+
+#addNewAdModal.active > form > textarea[name="additional"]{
+    grid-row: span 2;
+    width: 100%;
+}
+
+#addNewAdModal.active > form > button[type='submit']{
+    grid-column: span 2;
+    margin: 15px;
+    height: 40px;
+    width: 200px;
+}
+
+#addNewAdModal.active > form > input{
+    width: 70%;
+    margin: auto;
+    min-width: 200px;
+}
+
+
+#editUserDataModal.active > form{
+    display: flex;
+    flex-direction: column;
+}
+
+#editUserDataModal.active > form > *{
+    margin-bottom: 5px;
+}
+
+/* SIDE MENU */
+.side-menu{
+    width: 15vw;
+    min-width: 150px;
+    max-width: 300px;
+    min-height: 100vh;
+    padding: 10px;
+    position: relative;
+}
+
+.side-menu > div{
+    position: fixed;
+    width: 15vw
+}
+
+
+.side-menu > div > *{
+    width: 100%;
+}
+
+.username-div{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    color:white;
+    align-items: center;
+    font-size: 1.5em;
+}
+
+.side-menu  button{
+    display: flex;
+    width: 100%;
+    height: 45px;
+    justify-content: flex-start;
+}
+
+.side-menu button > svg{
+    margin-right: 10px;
+}
+
+.side-menu ul > li{
+    margin-bottom: 20px;
+}
+
+.username-div > svg{
+    margin-right: 10px;
+    width: 34px;
+    height: 34px;
+} 
+
+.newAd-div svg{
+    width: 28px;
+    height: 28px;
+}
+
+.edit-profile-div svg{
+    width: 28px;
+    height: 28px;
+}
+
+.delete-profile-div svg{
+    width: 28px;
+    height: 28px;
+}
+
+.logout-div svg{
+    width: 28px;
+    height: 28px;
+}
+
+.search-icon{
+    margin-top:10px;
+    padding: 15px;
+}
+
+.search-icon svg{
+    width: 30px;
+    height: 30px;
+}
